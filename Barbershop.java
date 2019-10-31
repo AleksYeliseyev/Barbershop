@@ -8,58 +8,41 @@ public class Barbershop {
 
 	private static final String FILE = "Note.txt";
 
-	
-
 	public static void main(String[] args) throws Exception{
-		ArrayList clients = new ArrayList();
-		clients = create(FILE);
+		
+		
 
-		System.out.println("Clients List:");
-		clientsPrint(clients);
-	}
+		ArrayList<String[]> line = new ArrayList<String[]>();		// очередь клиентов
 
-
-	// Метод для создания очереди клиентов
-
-	private static ArrayList create(String file) throws Exception{
-		FileReader fr = new FileReader(file);
+		FileReader fr = new FileReader(FILE);
 		Scanner scan = new Scanner (fr);
 
-		ArrayList ochered = new ArrayList();
-
-		int hours = 0;
-		int minutes = 0;
-		int agress = 0;
-		int time = 0;
-
-
 		while(scan.hasNextLine()){
-				hours = scan.nextInt();
-				System.out.println("hours: " + hours);
-				
-				minutes = scan.nextInt();
-				System.out.println("minutes: " + minutes);
-				
-				agress = scan.nextInt();
-				System.out.println("agress: " + agress);
 
-				System.out.println();
+			int a = scan.nextInt();
+			int b = scan.nextInt();
+			int c = scan.nextInt();
 
-				time = hours * 60 + minutes;
+			String[] customer = new String[2];							// клиент
 
-				System.out.println("time: " + time + "\n\n");
+			customer[0] = Integer.toString(a * 60 + b);
+			System.out.println("time: " + a + ":" + b + "   - " + customer[0] + " min");
+
+			customer[1] = Integer.toString(c);
+			System.out.println("agress: " + customer[1]);
+
+			line.add(customer);
+
+			System.out.println();
+
 		}
 		fr.close();
-		return ochered;
+
+
+		System.out.println("Clients List:");
+		System.out.println("Size:" + line.size());
+		System.out.println(line.toArray());
+		
 	}
-
-
-	private static void clientsPrint(ArrayList clients){
-		for(int i=0; i<clients.size(); i++){
-			System.out.println(clients.get(i));
-		}
-	}
-
-
 
 }
